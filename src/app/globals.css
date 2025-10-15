@@ -1,0 +1,345 @@
+@import "tailwindcss";
+
+/* Performance optimizations */
+html {
+  scroll-behavior: smooth;
+  font-display: swap;
+}
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+/* Lazy loading styles */
+.lazy {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazy.loaded {
+  opacity: 1;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@font-face {
+  font-family: 'Polly Rounded';
+  src: url('/assets/fonts/Polly_Rounded_Regular/PollyRounded-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Polly_Rounded_Regular/PollyRounded-Regular.woff') format('woff'),
+       url('/assets/fonts/Polly_Rounded_Regular/PollyRounded-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Polly Rounded';
+  src: url('/assets/fonts/Polly_Rounded_Light/PollyRounded-Light.woff2') format('woff2'),
+       url('/assets/fonts/Polly_Rounded_Light/PollyRounded-Light.woff') format('woff'),
+       url('/assets/fonts/Polly_Rounded_Light/PollyRounded-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Polly Rounded';
+  src: url('/assets/fonts/Polly_Rounded_Bold/PollyRounded-Bold.woff2') format('woff2'),
+       url('/assets/fonts/Polly_Rounded_Bold/PollyRounded-Bold.woff') format('woff'),
+       url('/assets/fonts/Polly_Rounded_Bold/PollyRounded-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Polly Rounded';
+  src: url('/assets/fonts/Polly_Rounded_Thin/PollyRounded-Thin.woff2') format('woff2'),
+       url('/assets/fonts/Polly_Rounded_Thin/PollyRounded-Thin.woff') format('woff'),
+       url('/assets/fonts/Polly_Rounded_Thin/PollyRounded-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Polly Rounded', system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: #ffffff;
+  color: #171717;
+  font-family: 'Polly Rounded', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #ffffff;
+}
+
+.font-regular {
+  font-family: 'Polly Rounded', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+}
+
+/* Custom animations for hero */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
+/* Lens flare effect */
+@keyframes lens-flare {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.lens-flare {
+  animation: lens-flare 3s ease-in-out infinite;
+}
+
+/* Why Solar Section Animations */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+  75% { opacity: 0.7; }
+}
+
+.animate-flicker {
+  animation: flicker 2s ease-in-out infinite;
+}
+
+@keyframes solar-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(255, 193, 7, 0);
+  }
+}
+
+.animate-solar-pulse {
+  animation: solar-pulse 2s ease-in-out infinite;
+}
+
+@keyframes battery-charge {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(5deg); }
+  50% { transform: scale(1.05) rotate(0deg); }
+  75% { transform: scale(1.1) rotate(-5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.animate-battery-charge {
+  animation: battery-charge 3s ease-in-out infinite;
+}
+
+@keyframes home-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.animate-home-glow {
+  animation: home-glow 2s ease-in-out infinite;
+}
+
+@keyframes solar-glow {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-solar-glow {
+  animation: solar-glow 4s ease-in-out infinite;
+}
+
+/* Our Solutions Section Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}
+
+/* Card hover effects */
+.card-hover {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+}
+
+/* Projects Gallery Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Parallax effect for project images */
+.parallax-bg {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Hover glow effect */
+.hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.hover-glow:hover::before {
+  opacity: 1;
+}
+
+/* About iPower Section Animations */
+@keyframes timeline-expand {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-timeline-expand {
+  animation: timeline-expand 1s ease-out forwards;
+}
+
+/* Milestone reveal animation */
+@keyframes milestone-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-milestone-reveal {
+  animation: milestone-reveal 0.6s ease-out forwards;
+}
+
+/* CTA Section Animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Button hover glow effect */
+@keyframes button-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(230, 142, 39, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(230, 142, 39, 0);
+  }
+}
+
+.animate-button-glow {
+  animation: button-glow 2s ease-in-out infinite;
+}

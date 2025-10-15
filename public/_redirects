@@ -1,0 +1,9 @@
+# Redirect old paths to new structure (if any)
+/consultation /contact 301
+/quote /contact 301
+
+# Handle trailing slashes
+/* /:splat 200
+
+# Fallback for client-side routing
+/* /index.html 200
