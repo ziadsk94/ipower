@@ -1,4 +1,3 @@
-// Structured Data Schemas for iPower Website
 
 export const organizationSchema = {
   "@context": "https://schema.org",

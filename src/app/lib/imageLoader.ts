@@ -3,7 +3,5 @@ export default function imageLoader({ src }: {
   width?: number;
   quality?: number;
 }) {
-  // For static export, return the original src
-  // Cloudflare Pages will handle optimization
   return src;
 }

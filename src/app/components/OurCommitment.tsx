@@ -14,7 +14,6 @@ const OurCommitment = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Animate checklist items with delay
           const items = [0, 1, 2, 3, 4];
           items.forEach((item, index) => {
             setTimeout(() => {

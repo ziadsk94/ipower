@@ -4,9 +4,7 @@ import { useEffect } from 'react';
 
 const PerformanceOptimizer = () => {
   useEffect(() => {
-    // Preload critical resources
     const preloadCriticalResources = () => {
-      // Preload hero images
       const heroImages = [
         '/assets/images/projects-section/business-complex.png',
         '/assets/images/projects-section/villa.png',
@@ -21,8 +19,6 @@ const PerformanceOptimizer = () => {
         link.href = imageSrc;
         document.head.appendChild(link);
       });
-
-      // Preload critical fonts
       const fontLink = document.createElement('link');
       fontLink.rel = 'preload';
       fontLink.as = 'font';
@@ -31,8 +27,6 @@ const PerformanceOptimizer = () => {
       fontLink.crossOrigin = 'anonymous';
       document.head.appendChild(fontLink);
     };
-
-    // Lazy load images
     const lazyLoadImages = () => {
       const images = document.querySelectorAll('img[data-src]');
       const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -48,13 +42,10 @@ const PerformanceOptimizer = () => {
 
       images.forEach(img => imageObserver.observe(img));
     };
-
-    // Optimize scroll performance
     const optimizeScroll = () => {
       let ticking = false;
       
       const updateScroll = () => {
-        // Add scroll optimization logic here
         ticking = false;
       };
 
@@ -67,13 +58,9 @@ const PerformanceOptimizer = () => {
 
       window.addEventListener('scroll', requestTick, { passive: true });
     };
-
-    // Initialize optimizations
     preloadCriticalResources();
     lazyLoadImages();
     optimizeScroll();
-
-    // Cleanup
     return () => {
       window.removeEventListener('scroll', () => {});
     };

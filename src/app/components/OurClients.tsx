@@ -64,7 +64,6 @@ const OurClients = () => {
     }
   ];
 
-  // Auto-rotate logos
   useEffect(() => {
     if (isVisible) {
       const interval = setInterval(() => {
