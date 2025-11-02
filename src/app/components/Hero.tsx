@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Hero = () => {
   const [currentTagline, setCurrentTagline] = useState(0);
@@ -10,7 +10,7 @@ const Hero = () => {
 
   const taglines = [
     "Leading Electrical Engineering Solutions Provider.",
-    "Innovative Electrical Systems — Powering Lebanon's Future."
+    "Innovative Electrical Systems — Powering Lebanon's Future.",
   ];
 
   useEffect(() => {
@@ -44,9 +44,9 @@ const Hero = () => {
         >
           <source src="/assets/videos/hero.mp4" type="video/mp4" />
         </video>
-        
+
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
-        
+
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-orange-300/10 to-transparent" />
       </div>
 
@@ -57,7 +57,11 @@ const Hero = () => {
         <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-orange-300/50 rounded-full animate-pulse delay-3000" />
       </div>
 
-      <div className={`relative z-20 h-full flex items-center transition-opacity duration-1000 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+      <div
+        className={`relative z-20 h-full flex items-center transition-opacity duration-1000 ${
+          showContent ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
@@ -66,7 +70,7 @@ const Hero = () => {
             </h1>
 
             <div className="h-20 mb-8">
-              <p 
+              <p
                 key={currentTagline}
                 className="text-xl md:text-2xl text-white/90 font-regular leading-relaxed animate-fade-in"
               >
@@ -74,19 +78,17 @@ const Hero = () => {
               </p>
             </div>
 
-            <p className="text-lg text-white/80 mb-8 max-w-lg leading-relaxed">
-              Transform your electrical systems with innovative engineering solutions designed for Lebanon's industrial and commercial needs.
-            </p>
-
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
                 className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-regular text-white bg-[#E68E27] rounded-full hover:bg-[#007577] transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-center"
               >
-                <span className="relative z-10 text-center">Get Your Free Electrical Consultation</span>
+                <span className="relative z-10 text-center">
+                  Get Your Free Electrical Consultation
+                </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#007577] to-[#005a5c] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>
-              
+
               <Link
                 href="/solutions"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-regular text-white border-2 border-white/30 rounded-full hover:border-white/60 hover:bg-white/10 transition-all duration-300 text-center"
@@ -102,11 +104,15 @@ const Hero = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#E68E27] rounded-full" />
-                <span className="text-sm font-regular">Lebanon Specialists</span>
+                <span className="text-sm font-regular">
+                  Lebanon Specialists
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#E68E27] rounded-full" />
-                <span className="text-sm font-regular">15+ Years Experience</span>
+                <span className="text-sm font-regular">
+                  15+ Years Experience
+                </span>
               </div>
             </div>
           </div>

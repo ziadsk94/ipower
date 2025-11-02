@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { House, Buildings, Factory, ArrowRight } from '@phosphor-icons/react';
+import { House, Buildings, Factory, Robot, ArrowRight } from '@phosphor-icons/react';
 
 const OurSolutions = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -46,6 +46,18 @@ const OurSolutions = () => {
       bgGradient: 'from-green-50 to-emerald-50',
       iconBg: 'bg-green-100',
       iconColor: 'text-green-600'
+    },
+    {
+      id: 4,
+      category: 'automation',
+      icon: Robot,
+      title: 'Automation Solutions',
+      description: 'Smart automation systems for intelligent control and monitoring of electrical infrastructure.',
+      cta: 'Learn More',
+      color: '#007577',
+      bgGradient: 'from-purple-50 to-indigo-50',
+      iconBg: 'bg-purple-100',
+      iconColor: 'text-purple-600'
     }
   ];
 
@@ -99,7 +111,8 @@ const OurSolutions = () => {
               { key: 'all', label: 'All Solutions' },
               { key: 'residential', label: 'Residential' },
               { key: 'commercial', label: 'Commercial' },
-              { key: 'industrial', label: 'Industrial' }
+              { key: 'industrial', label: 'Industrial' },
+              { key: 'automation', label: 'Automation' }
             ].map((filter) => (
               <button
                 key={filter.key}
