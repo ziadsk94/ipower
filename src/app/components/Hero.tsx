@@ -65,7 +65,7 @@ const Hero = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              <span className="block">Electrical Engineering</span>
+              <span className="block">Solar Power</span>
               <span className="block text-[#E68E27]">Solutions</span>
             </h1>
 

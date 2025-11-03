@@ -96,7 +96,7 @@ const OurSolutions = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Electrical Engineering Solutions for Every Need
+            Solar Power & Electrical Engineering Solutions for Every Need
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Whether you're powering a home, a business, or an industry — iPower designs reliable electrical systems that scale with you.

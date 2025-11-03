@@ -36,6 +36,7 @@ const Footer = () => {
     { name: 'About iPower', href: '/about' },
     { name: 'Our Solutions', href: '/solutions' },
     { name: 'Projects', href: '/projects' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Contact', href: '/contact' }
   ];
 
