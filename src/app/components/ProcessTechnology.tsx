@@ -88,31 +88,33 @@ const ProcessTechnology = () => {
                 onMouseEnter={() => setActiveStep(index)}
                 onMouseLeave={() => setActiveStep(-1)}
               >
-                <div className={`relative bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 transform h-full flex flex-col ${
+                <div className={`relative bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 transform h-full flex flex-col overflow-hidden ${
                   activeStep === index ? 'ring-2 ring-[#E68E27] shadow-xl -translate-y-2' : ''
                 }`}>
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#007577] to-[#E68E27] flex items-center justify-center transition-all duration-300 ${
-                    activeStep === index ? 'scale-110 shadow-lg' : 'scale-100'
+                  {/* Normal state content */}
+                  <div className={`flex flex-col h-full transition-all duration-300 ${
+                    activeStep === index ? 'blur-sm opacity-30' : 'opacity-100'
                   }`}>
-                    <step.icon size={32} weight="bold" className="text-white" />
+                    <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#007577] to-[#E68E27] flex items-center justify-center transition-all duration-300`}>
+                      <step.icon size={32} weight="bold" className="text-white" />
+                    </div>
+
+                    <h3 className="text-xl font-bold text-[#007577] mb-3 text-center group-hover:text-[#E68E27] transition-colors duration-300">
+                      {step.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-center leading-relaxed mb-4 flex-grow">
+                      {step.description}
+                    </p>
                   </div>
 
-                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-[#E68E27] text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    {index + 1}
-                  </div>
-
-                  <h3 className="text-xl font-bold text-[#007577] mb-3 text-center group-hover:text-[#E68E27] transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 text-center leading-relaxed mb-4 flex-grow">
-                    {step.description}
-                  </p>
-
-                  <div className={`text-sm text-gray-500 text-center transition-all duration-300 ${
-                    activeStep === index ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0 overflow-hidden'
+                  {/* Hover state content - centered */}
+                  <div className={`absolute inset-0 flex items-center justify-center px-6 transition-all duration-300 ${
+                    activeStep === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                   }`}>
-                    {step.details}
+                    <p className="text-base text-gray-700 text-center leading-relaxed font-medium">
+                      {step.details}
+                    </p>
                   </div>
                 </div>
 

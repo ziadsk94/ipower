@@ -107,40 +107,34 @@ const OurExpertise = () => {
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <div className={`relative bg-gradient-to-br ${area.bgGradient} rounded-2xl p-8 shadow-sm transition-all duration-300 transform h-full flex flex-col ${
+              <div className={`relative bg-gradient-to-br ${area.bgGradient} rounded-2xl p-8 shadow-sm transition-all duration-300 transform h-full flex flex-col overflow-hidden ${
                 hoveredCard === index ? 'ring-2 ring-[#E68E27] shadow-xl -translate-y-2' : ''
               }`}>
-                <div className={`w-16 h-16 ${area.iconBg} rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
-                  hoveredCard === index ? 'scale-110' : ''
+                {/* Normal state content */}
+                <div className={`flex flex-col h-full transition-all duration-300 ${
+                  hoveredCard === index ? 'blur-sm opacity-30' : 'opacity-100'
                 }`}>
-                  <area.icon size={32} weight="bold" className={area.color} />
-                </div>
+                  <div className={`w-16 h-16 ${area.iconBg} rounded-2xl flex items-center justify-center mb-6 transition-all duration-300`}>
+                    <area.icon size={32} weight="bold" className={area.color} />
+                  </div>
 
-                <h3 className="text-2xl font-bold text-[#007577] mb-4 group-hover:text-[#E68E27] transition-colors duration-300">
-                  {area.title}
-                </h3>
+                  <h3 className="text-2xl font-bold text-[#007577] mb-4 group-hover:text-[#E68E27] transition-colors duration-300">
+                    {area.title}
+                  </h3>
 
-                <p className="text-gray-600 leading-relaxed mb-4 flex-grow">
-                  {area.description}
-                </p>
-
-                <div className={`transition-all duration-300 ${
-                  hoveredCard === index ? 'opacity-100 max-h-20' : 'opacity-0 max-h-0'
-                } overflow-hidden`}>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {area.details}
+                  <p className="text-gray-600 leading-relaxed mb-4 flex-grow">
+                    {area.description}
                   </p>
                 </div>
 
-                <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#007577] to-[#E68E27] transition-all duration-500 ${
-                  hoveredCard === index ? 'w-full opacity-100' : 'w-0 opacity-0'
-                }`} />
-
-                <div className={`absolute inset-0 rounded-2xl transition-opacity duration-300 ${
-                  hoveredCard === index ? 'opacity-20' : 'opacity-0'
-                }`} style={{
-                  background: 'radial-gradient(circle at center, rgba(230,142,39,0.1) 0%, transparent 70%)'
-                }} />
+                {/* Hover state content - centered */}
+                <div className={`absolute inset-0 flex items-center justify-center px-6 transition-all duration-300 ${
+                  hoveredCard === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                }`}>
+                  <p className="text-base text-gray-700 text-center leading-relaxed font-medium">
+                    {area.details}
+                  </p>
+                </div>
               </div>
             </div>
           ))}

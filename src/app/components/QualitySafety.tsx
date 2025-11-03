@@ -144,10 +144,6 @@ const QualitySafety = () => {
                 }`} style={{
                   background: 'radial-gradient(circle at center, rgba(230,142,39,0.1) 0%, transparent 70%)'
                 }} />
-
-                <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#007577] to-[#E68E27] transition-all duration-500 ${
-                  hoveredPanel === index ? 'w-full opacity-100' : 'w-0 opacity-0'
-                }`} />
               </div>
             </div>
           ))}
