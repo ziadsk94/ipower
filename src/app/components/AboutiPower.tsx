@@ -2,13 +2,15 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sun, Leaf, Factory, Heart } from '@phosphor-icons/react';
+import { ArrowRight, Sun, Leaf, Factory, Heart, CaretDown } from '@phosphor-icons/react';
 
 const AboutiPower = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [visibleMilestones, setVisibleMilestones] = useState<number[]>([]);
+  const [visibleMobileCards, setVisibleMobileCards] = useState<number[]>([]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const milestonesRef = useRef<HTMLDivElement>(null);
+  const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const milestones = [
     {
@@ -60,6 +62,7 @@ const AboutiPower = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Desktop milestones observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -79,6 +82,36 @@ const AboutiPower = () => {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  // Mobile cards observer - reveals cards individually as they scroll into view
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    mobileCardRefs.current.forEach((cardRef, index) => {
+      if (cardRef) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setVisibleMobileCards(prev => {
+                if (!prev.includes(index)) {
+                  return [...prev, index];
+                }
+                return prev;
+              });
+            }
+          },
+          { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        observer.observe(cardRef);
+        observers.push(observer);
+      }
+    });
+
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
   }, []);
 
   return (
@@ -189,13 +222,52 @@ const AboutiPower = () => {
           </h3>
           
           <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#007577] to-[#E68E27] transform -translate-x-1/2" />
+            {/* Desktop vertical line - hidden on mobile */}
+            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#007577] to-[#E68E27] transform -translate-x-1/2" />
             
-            <div className="space-y-12">
+            <div className="lg:space-y-12">
               {milestones.map((milestone, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center gap-8 ${
+                <div key={index}>
+                  {/* Mobile layout: stacked cards */}
+                  <div className="lg:hidden flex flex-col items-center">
+                    <div 
+                      ref={(el) => {
+                        mobileCardRefs.current[index] = el;
+                      }}
+                      className={`w-full mb-8 p-6 bg-white rounded-2xl shadow-lg border-l-4 border-[#007577] transition-all duration-700 ${
+                        visibleMobileCards.includes(index) 
+                          ? 'opacity-100 translate-y-0' 
+                          : 'opacity-0 translate-y-8'
+                      }`}
+                    >
+                      <div className="flex items-center gap-4 mb-3">
+                        <milestone.icon size={24} weight="bold" className="text-[#007577]" />
+                        <span className="text-2xl font-bold text-[#007577]">{milestone.year}</span>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">{milestone.title}</h4>
+                      <p className="text-gray-600 font-regular">{milestone.description}</p>
+                    </div>
+                    
+                    {/* Arrow between cards on mobile - reveals with the card above it */}
+                    {index < milestones.length - 1 && (
+                      <div 
+                        className={`flex justify-center mb-8 transition-all duration-700 ${
+                          visibleMobileCards.includes(index) 
+                            ? 'opacity-100 translate-y-0' 
+                            : 'opacity-0 translate-y-4'
+                        }`}
+                        style={{
+                          transitionDelay: visibleMobileCards.includes(index) ? '200ms' : '0ms'
+                        }}
+                      >
+                        <CaretDown size={24} weight="bold" className="text-[#007577]" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Desktop layout: alternating left/right */}
+                  <div
+                    className={`hidden lg:flex items-center gap-8 ${
                     index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
                   }`}
                 >
@@ -235,6 +307,7 @@ const AboutiPower = () => {
                   </div>
 
                   <div className="flex-1" />
+                  </div>
                 </div>
               ))}
             </div>
