@@ -190,12 +190,12 @@ const Footer = () => {
               <p className="text-sm text-gray-400">
                 Designed & Developed by{' '}
                 <a 
-                  href="https://ctrl-build.com" 
+                  href="https://monk.haus" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-[#007577] hover:text-[#E68E27] transition-colors duration-300 font-medium"
                 >
-                  CTRL+BUILD
+                  monk
                 </a>
               </p>
             </div>
